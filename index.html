@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Stock Check</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 20px; background-color: #f4f4f4; }
+        .container { max-width: 800px; margin: auto; background: white; padding: 20px; border-radius: 8px; box-shadow: 0 2px 4px rgba(0,0,0,0.1); }
+        h1 { color: #333; text-align: center; }
+        .nav-links { text-align: center; margin-bottom: 20px; }
+        .nav-links a { margin: 0 10px; text-decoration: none; color: #007bff; border: 1px solid #007bff; padding: 8px 15px; border-radius: 5px; transition: background-color 0.3s, color 0.3s; }
+        .nav-links a:hover { background-color: #007bff; color: white; }
+        table { width: 100%; border-collapse: collapse; margin-top: 20px; }
+        th, td { border: 1px solid #ddd; padding: 8px; text-align: left; }
+        th { background-color: #f2f2f2; color: #333; }
+        .no-items { text-align: center; color: #666; margin-top: 20px; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Current Stock Overview</h1>
+        <div class="nav-links">
+            <a href="{{ url_for('add_item') }}">Add New Item</a>
+            <a href="{{ url_for('analysis') }}">View Analysis Chart</a>
+        </div>
+
+        {% if stock_items %}
+        <table>
+            <thead>
+                <tr>
+                    <th>Item Name</th>
+                    <th>Current Quantity</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for item in stock_items %}
+                <tr>
+                    <td>{{ item.item_name }}</td>
+                    <td>{{ item.quantity }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        {% else %}
+        <p class="no-items">No stock items found. Add some items to see them here!</p>
+        {% endif %}
+    </div>
+</body>
+</html>

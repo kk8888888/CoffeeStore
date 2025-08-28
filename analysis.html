@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Stock Analysis</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 20px; background-color: #f4f4f4; }
+        .container { max-width: 900px; margin: auto; background: white; padding: 20px; border-radius: 8px; box-shadow: 0 2px 4px rgba(0,0,0,0.1); }
+        h1 { color: #333; text-align: center; }
+        .chart-container { text-align: center; margin-top: 30px; }
+        .chart-container img { max-width: 100%; height: auto; border: 1px solid #ddd; border-radius: 5px; }
+        .no-data { text-align: center; color: #666; margin-top: 20px; }
+        .back-link { display: block; text-align: center; margin-top: 20px; text-decoration: none; color: #007bff; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Stock Analysis Chart</h1>
+        {% if chart_exists %}
+            <div class="chart-container">
+                <img src="{{ chart_url }}" alt="Stock Analysis Chart">
+            </div>
+        {% else %}
+            <p class="no-data">No stock data available to generate a chart. Please add some items first!</p>
+        {% endif %}
+        <a href="{{ url_for('index') }}" class="back-link">Back to Stock Overview</a>
+    </div>
+</body>
+</html>
